@@ -1,10 +1,10 @@
 pipeline {
-    agent any
+	agent {docker {image 'maven:3.3.3'}}
 	
     stages {
-        stage('Clean') {
+        stage('Build') {
 	    steps {
-               sh "mvn -f moodprism/pom.xml clean"
+               sh "mvn -f moodprism/pom.xml clean test"
             }
         }
         stage('Test') {
