@@ -2,11 +2,11 @@ pipeline {
 	agent any
 	
     stages {
-        stage('Build') {
+        /*stage('Clean') {
 	    steps {
                sh "mvn -f moodprism/pom.xml clean test"
             }
-        }
+        }*/
         stage('Test') {
             steps {
                 sh "mvn -f  moodprism/pom.xml test"
