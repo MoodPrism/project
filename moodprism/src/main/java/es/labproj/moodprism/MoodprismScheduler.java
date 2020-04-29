@@ -1,8 +1,5 @@
 package es.labproj.moodprism;
 
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
-import org.jnativehook.keyboard.NativeKeyListener;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +26,7 @@ public class MoodprismScheduler
     {         
         log.info("Generating test input...");
         JSONObject obj = new JSONObject();
-        obj.put("name", "Joao");
+        obj.put("name", "Test_input");
         obj.put("keys", Integer.toString(i++));
     
         producer.sendMsg(obj.toString());  

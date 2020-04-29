@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+/home/cris/Desktop/KeyDetectionApp/.metadata/.plugins/org.eclipse.jdt.core
-646308851.index
-143640614.index
