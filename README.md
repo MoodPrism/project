@@ -14,15 +14,23 @@ docker run --rm -it --network project_isolated_nw -p 8080:8080 --name moodprism 
 ```
 
 #### START CLIENTAPP (inside clientApp folder)
+Windows:
 ```
 java -jar target\clientapp-0.0.1-SNAPSHOT.jar
 ```
-
+Unix:
+```
+java -jar target/clientapp-0.0.1-SNAPSHOT.jar
+```
 #### START TESTINGCONSUMER (inside testingConsumer folder)
+Windows:
 ```
 java -jar target\TestingConsumer-0.0.1-SNAPSHOT.jar
 ```
-
+Unix:
+```
+java -jar target/TestingConsumer-0.0.1-SNAPSHOT.jar
+```
 #### TEST THE APPLICATION
 
 http://localhost:8080/
