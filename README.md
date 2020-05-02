@@ -1,7 +1,9 @@
 Follow the following steps to run the application:
 
-##RUN KAFKA
+## RUN KAFKA
+```
 docker-compose up -d
+```
 
 #BUILD AND START MOODPRISM (inside moodprism folder)
 docker build -t moodprism .
