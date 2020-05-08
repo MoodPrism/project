@@ -7,15 +7,15 @@ pipeline {
                sh "mvn -f moodprism/pom.xml clean package"
             }
         }
-        stage('Test') {
-            steps {
-                sh "mvn -f  moodprism/pom.xml test"
-            }
-        }
         stage('Deploy') {
             steps {
-                sh 'mvn -f pom.xml deploy -s settings.xml'
+                sh 'mvn -f moodprism/pom.xml deploy -s moodprism/settings.xml'
 
+            }
+        }
+        stage('Test') {
+            steps {
+	       sh "Tests........."
             }
         }
     }
