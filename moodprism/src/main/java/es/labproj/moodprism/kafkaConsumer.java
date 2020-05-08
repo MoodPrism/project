@@ -21,7 +21,6 @@ public class kafkaConsumer {
         lock.lock();
         try{msgs.add(msg);}
         finally{lock.unlock();}
-        log.info(String.format("Producing-> %s", msg));
     }
     
     public String getMessages(){

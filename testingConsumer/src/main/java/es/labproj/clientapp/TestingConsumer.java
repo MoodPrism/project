@@ -26,29 +26,22 @@ public class TestingConsumer
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 10);
+        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1000);
 		
 		KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
 		kafkaConsumer.subscribe(Collections.singletonList(TOPIC_NAME));
-		try {
-            while (true) {
-                ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(3000));
+        try
+        {
+            while (true)
+            {
+                ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(5000));
                 System.out.println("Fetched " + records.count() + " records");
-                for (ConsumerRecord<String, String> record : records) {
-                    System.out.println("Received: " + record.key() + ":" + record.value());
-                    record.headers().forEach(header -> {
-                        System.out.println("Header key: " + header.key() + ", value:" + header.value());
-                    });
-                }
+                for(ConsumerRecord<String, String> record : records) {System.out.println("Received: " + record.key() + ":" + record.value());}
                 kafkaConsumer.commitSync();
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.MILLISECONDS.sleep(100);
             }
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            kafkaConsumer.close();
         }
+        catch(Exception e) {System.out.println(e);}
+        finally {kafkaConsumer.close();}
 	}
-	
-
 }

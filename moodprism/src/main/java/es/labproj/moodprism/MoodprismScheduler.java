@@ -28,7 +28,12 @@ public class MoodprismScheduler
         JSONObject obj = new JSONObject();
         obj.put("name", "Test_input");
         obj.put("keys", Integer.toString(i++));
-    
+        producer.sendMsg(obj.toString());  
+        obj.put("name", "Test_input");
+        obj.put("mouse", Integer.toString(i++));
+        producer.sendMsg(obj.toString());  
+        obj.put("name", "Test_input");
+        obj.put("mood", Integer.toString(i++));
         producer.sendMsg(obj.toString());  
     }
 }
