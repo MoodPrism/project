@@ -14,7 +14,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'deploying...'
+                sh 'mvn -f pom.xml deploy -s settings.xml'
+
             }
         }
     }

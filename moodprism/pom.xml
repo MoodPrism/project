@@ -13,11 +13,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>moodprism</name>
 	<description>Lab project for ES, 2019/2020</description>
-
+        
+        <distributionManagement>
+            <repository>
+                <id>central</id>
+                <name>c04a282c7a6d-releases</name>
+                <url>http://192.168.160.99:8081/artifactory/libs-release</url>
+            </repository>
+        </distributionManagement>
+        
 	<properties>
 		<java.version>1.8</java.version>
 		<skipTests>false</skipTests>
 	</properties>
+        
+        
+
 
 	<dependencies>
 		<dependency>
