@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.labproj</groupId>
 	<artifactId>moodprism</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>moodprism</name>
 	<description>Lab project for ES, 2019/2020</description>
         
