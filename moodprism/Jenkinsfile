@@ -18,5 +18,13 @@ pipeline {
 		sh 'mvn -f moodprism/pom.xml deploy -s moodprism/settings.xml'
 	    }
 	}
+	stage('Build Docker Image'){
+	    steps{
+	       sh 'docker image rm moodpris'
+	       sh 'docker build -t moodprism .'
+	       sh 'docker tag esp10-moodprism 192.168.160.99:5000/esp10-moodprism'
+	       sh 'docker push 192.168.160.99:5000/esp10-moodprism'
+	    }
+	}
     }
 }
