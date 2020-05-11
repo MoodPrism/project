@@ -20,6 +20,7 @@ pipeline {
 	}
 	stage('Build Docker Image'){
 	    steps{
+	       sh 'cd moodprism'
 	       //sh 'docker image rm moodpris'
 	       sh 'docker build -t moodprism .'
 	       sh 'docker tag esp10-moodprism 192.168.160.99:5000/esp10-moodprism'
