@@ -25,6 +25,7 @@ pipeline {
 		       sh 'docker build -t moodprism .'
 		       sh 'docker tag moodprism 192.168.160.99:5000/moodprism'
 		       sh 'docker push 192.168.160.99:5000/moodprism'
+		       sh 'docker images'
 		    }
 	    }
 	}
