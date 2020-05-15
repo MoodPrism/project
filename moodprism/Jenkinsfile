@@ -32,7 +32,9 @@ pipeline {
 	stage('Deploy runtime'){
 	   steps{
 		 dir('moodprism'){
-		     WithCredentials([])
+	             sshagent(credentials:['esp_ssh_runtimeVM']){
+			sh 'ssh -o StrictHostKeyChecking=no -l esp10 192.168.160.103 docker run -d -p 10080:8080 --name esp10-moodprism 192.168.160.99:5000/esp10-moodprism'	 
+	             }
 		 }
 	   }
 	}
