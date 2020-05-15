@@ -33,7 +33,7 @@ pipeline {
 	   steps{
 		 dir('moodprism'){
 	             sshagent(credentials:['esp_ssh_runtimeVM']){
-			sh 'ssh esp10@192.168.160.103 docker run --rm -it -d -p 10080:8080 --name esp10-moodprism 192.168.160.99:5000/esp10-moodprism'	 
+			sh 'ssh -o StrictHostKeyChecking=no esp10@192.168.160.103 docker run --rm -it -d -p 10080:8080 --name esp10-moodprism 192.168.160.99:5000/esp10-moodprism'	 
 	             }
 		 }
 	   }
