@@ -29,5 +29,12 @@ pipeline {
 		    }
 	    }
 	}
+	stage('Deploy runtime'){
+	   steps{
+		 dir('moodprism'){
+		     WithCredentials([])
+		 }
+	   }
+	}
     }
 }
