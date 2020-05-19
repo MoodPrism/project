@@ -26,7 +26,7 @@ java -jar target/clientapp-0.0.1-SNAPSHOT.jar
 #### START MOODAPP (inside moodApp folder)
 Windows:
 ```
-java -jar target\moodApp-0.0.1-SNAPSHOT.jar
+java -jar target\moodapp-0.0.1-SNAPSHOT.jar
 ```
 Unix:
 ```

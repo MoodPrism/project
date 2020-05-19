@@ -5,13 +5,10 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 
-
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty"},
-        features = "src/test/resources/",
-        glue = "StepsDefenition"
-    
+        plugin = {"pretty", "json:target/cucumber-report.json"},
+        features = "src/test/resources/"
 )
 public class RunCucumberTest {
 }
