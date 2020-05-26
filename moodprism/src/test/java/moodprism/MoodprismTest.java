@@ -13,15 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MoodprismTest.class)
-@EmbeddedKafka
 public class MoodprismTest {
     
-    @ClassRule
-    public static EmbeddedKafkaRule embeddedKafka = new EmbeddedKafkaRule(1, true, "topic");
     
     @Test
     public void contextLoads() throws IOException {
-        System.in.read();
+        System.out.println("HELLOOOOOOOOOOOO");
     }
   
 }
