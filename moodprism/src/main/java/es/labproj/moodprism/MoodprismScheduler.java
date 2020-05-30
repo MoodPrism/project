@@ -24,7 +24,7 @@ public class MoodprismScheduler
     @Scheduled(fixedRate = 10000)
     public void updateDataRepository()
     {         
-        log.info("Generating test input...");
+        //log.info("Generating test input...");
         JSONObject obj = new JSONObject();
         obj.put("name", "Test_input");
         obj.put("keys", Integer.toString(i++));
