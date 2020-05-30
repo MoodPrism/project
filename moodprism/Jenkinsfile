@@ -13,7 +13,7 @@ pipeline {
 	       sh "mvn -f moodprism/pom.xml test"
             }
         }
-	stage('Deploy') {
+	/*stage('Deploy') {
 	    steps {
 		sh 'mvn -f moodprism/pom.xml deploy -s moodprism/settings.xml'
 	    }
@@ -37,6 +37,13 @@ pipeline {
 	             }
 		 }
 	   }
-	}
+	}*/
+        stage('clone dashboard'){
+	   steps{
+	        git branch: 'master',
+			credentialsId: '8ea02772-3967-4797-9b78-2523260766bc'
+		   	url: 'ssh://github.com/MoodPrism/dashboard.git' 
+	   } 
+        }
     }
 }
