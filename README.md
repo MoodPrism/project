@@ -1,5 +1,5 @@
 # Follow the following steps to run the application:
- 
+  
 #### RUN KAFKA
 ```
 docker-compose up -d
