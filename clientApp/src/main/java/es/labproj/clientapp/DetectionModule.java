@@ -21,7 +21,6 @@ import org.apache.kafka.common.serialization.StringSerializer;
 public class DetectionModule implements NativeKeyListener, NativeMouseInputListener, NativeMouseWheelListener
 {
 
-	private static final String TOPIC_NAME = "moodprismTopic";
 	private static Producer<String, String> producer;
 	private static Properties properties;
 	private static String username;
@@ -64,8 +63,10 @@ public class DetectionModule implements NativeKeyListener, NativeMouseInputListe
 		obj.put("name", username);
 		obj.put("keys", NativeKeyEvent.getKeyText(key.getKeyCode()));
 		String recordValue = obj.toString();
-		ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, null, recordValue);
+		ProducerRecord<String, String> record = new ProducerRecord<>("moodprismTopic", null, recordValue);
+		ProducerRecord<String, String> record2 = new ProducerRecord<>("moodTopic", null, recordValue);
 		producer.send(record);
+		producer.send(record2);
 		producer.flush();
 		if (key.getKeyCode() == NativeKeyEvent.VC_ESCAPE)
 		{
@@ -85,8 +86,10 @@ public class DetectionModule implements NativeKeyListener, NativeMouseInputListe
 			obj.put("name", username);
 			obj.put("mouse", "(" + e.getX() + ", " + e.getY() + ")");
 			String recordValue = obj.toString();
-			ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, null, recordValue);
+			ProducerRecord<String, String> record = new ProducerRecord<>("moodprismTopic", null, recordValue);
+			ProducerRecord<String, String> record2 = new ProducerRecord<>("moodTopic", null, recordValue);
 			producer.send(record);
+			producer.send(record2);
 			producer.flush();
 			count = 0;
 		}

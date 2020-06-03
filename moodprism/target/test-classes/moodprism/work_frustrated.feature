@@ -3,9 +3,9 @@ Feature: Work frustrated
 
     Scenario: Spamming Escape Key
             Given I have the application running
-            And I press Escape constantly
-            When the page refreshes
-            Then the result on the screen should indicate frustration
+            When I press any key "a" 
+            And the page refreshes
+            Then The key should be on the screen
 
     Scenario: Writing normally
             Given I have the application running

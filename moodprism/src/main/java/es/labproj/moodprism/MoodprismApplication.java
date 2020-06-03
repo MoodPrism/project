@@ -40,8 +40,10 @@ public class MoodprismApplication
 		String recordValue = obj.toString();
         Producer<String, String> producer = new KafkaProducer<>(properties);
         ProducerRecord<String, String> record = new ProducerRecord<>("moodprismTopic", null, recordValue);
+        ProducerRecord<String, String> record2 = new ProducerRecord<>("moodTopic", null, recordValue);
 
         producer.send(record);
+        producer.send(record2);
         producer.flush();
         producer.close();
 	}

@@ -27,8 +27,8 @@ public class MoodprismController {
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(consumer.getMessages());
         if(json.containsKey("keys")) {updateMap(json.get("name").toString(), "keys", json.get("keys").toString());}
-        else if(json.containsKey("mouse")) {updateMap(json.get("name").toString(), "mouse", json.get("mouse").toString());}
-        else if(json.containsKey("mood")) {updateMap(json.get("name").toString(), "mood", json.get("mood").toString());}
+        if(json.containsKey("mouse")) {updateMap(json.get("name").toString(), "mouse", json.get("mouse").toString());}
+        if(json.containsKey("mood")) {updateMap(json.get("name").toString(), "mood", json.get("mood").toString());};
         JSONObject obj = new JSONObject();
         obj.putAll(userMap);
         return obj.toJSONString();

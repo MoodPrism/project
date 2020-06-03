@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,7 +24,6 @@ public class MoodApp
 {
 
 	private static HashMap<String, HashMap<String, String>> userMap = new HashMap<>();
-	private static final String TOPIC_NAME = "moodprismTopic";
 	private static Producer<String, String> producer;
 	private static Properties consumerProperties;
 	private static Properties producerProperties;
@@ -39,9 +40,9 @@ public class MoodApp
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-		consumerProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1000);
+		consumerProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 5);
 		KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(consumerProperties);
-		kafkaConsumer.subscribe(Collections.singletonList(TOPIC_NAME));
+		kafkaConsumer.subscribe(Collections.singletonList("moodTopic"));
 		
         producerProperties = new Properties();
         producerProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaAddress);
@@ -54,6 +55,7 @@ public class MoodApp
             while (true)
             {
                 ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(10000));
+                kafkaConsumer.commitSync();
                 System.out.println("Fetched " + records.count() + " records");
 				for(ConsumerRecord<String, String> record : records)
 				{
@@ -63,7 +65,6 @@ public class MoodApp
 					if(json.containsKey("keys")) {updateMap(json.get("name").toString(), "keys", json.get("keys").toString());}
 					else if(json.containsKey("mouse")) {updateMap(json.get("name").toString(), "mouse", json.get("mouse").toString());}
 				}
-                kafkaConsumer.commitSync();
                 TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
@@ -73,6 +74,9 @@ public class MoodApp
 
 	private static void updateMap(String name, String key, String value)
     {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {@Override public synchronized void run() {updateMap(name, "mood", "slow");}};
+		timer.schedule(task, 2000);
 		System.out.println("updating mood");
         HashMap<String, String> temp = new HashMap<>();
         if(!userMap.containsKey(name)) {userMap.put(name, new HashMap<String, String>());}
@@ -82,13 +86,18 @@ public class MoodApp
 		temp.putIfAbsent("mood", "NA");
 		if(key.equals("keys"))
 		{
+			timer.cancel();
 			if(temp.get("keys").equals(value)) {temp.put("mood", "stressed");}
-			else {temp.put("mood", "normal");}
 		}
 		if(key.equals("mouse"))
 		{
-			if(temp.get("mouse").equals(value)) {temp.put("mood", "slow");}
-			else {temp.put("mood", "normal");}
+			timer.cancel();
+			temp.put("mood", "normal");
+		}
+		if(key.equals("mood"))
+		{
+			timer.cancel();
+			temp.put("mood", "slow");
 		}
         temp.put(key, value);
 		userMap.put(name, temp);		
@@ -96,7 +105,7 @@ public class MoodApp
 		obj.put("name", name);
 		obj.put("mood", temp.get("mood"));
 		String recordValue = obj.toString();
-		ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, null, recordValue);
+		ProducerRecord<String, String> record = new ProducerRecord<>("moodprismTopic", null, recordValue);
 		producer.send(record);
 		producer.flush();
     }
