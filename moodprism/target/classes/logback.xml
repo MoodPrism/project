@@ -21,18 +21,6 @@
     </appender>
 
     <appender name="STASH3" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>192.168.160.99:5000</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-        <keepAliveDuration>5 minutes</keepAliveDuration>
-    </appender>
-
-    <appender name="STASH4" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>192.168.160.103:5000</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-        <keepAliveDuration>5 minutes</keepAliveDuration>
-    </appender>
-
-    <appender name="STASH5" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>localhost:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <keepAliveDuration>5 minutes</keepAliveDuration>
@@ -42,8 +30,6 @@
         <appender-ref ref="STASH"/>
         <appender-ref ref="STASH2"/>
         <appender-ref ref="STASH3"/>
-        <appender-ref ref="STASH4"/>
-        <appender-ref ref="STASH5"/>
     </logger>
 
     <root level="INFO">
@@ -51,7 +37,5 @@
         <appender-ref ref="STASH"/>
         <appender-ref ref="STASH2"/>
         <appender-ref ref="STASH3"/>
-        <appender-ref ref="STASH4"/>
-        <appender-ref ref="STASH5"/>
     </root>
 </configuration>
