@@ -18,7 +18,7 @@ pipeline {
 		sh 'mvn -f moodprism/pom.xml deploy -s moodprism/settings.xml'
 	    }
 	}
-	stage('Build Docker Image'){
+	stage('Build Docker Image moodprism'){
 	    steps{
 		    dir('moodprism'){
 		       sh 'docker build -t esp10-moodprism .'
@@ -28,11 +28,36 @@ pipeline {
 		    }
 	    }
 	}
-	stage('Deploy runtime'){
+	stage('Deploy runtime moodprism'){
 	   steps{
 		 dir('moodprism'){
 	             sshagent(credentials:['esp10_ssh_runtimeVM']){
 			sh 'ssh -o StrictHostKeyChecking=no esp10@192.168.160.103 docker run --rm -it -d -p 10080:8080 --name esp10-moodprism 192.168.160.99:5000/esp10-moodprism'	 
+	             }
+		 }
+	   }
+	}
+	stage('Build and Deploy moodApp') {
+	    steps {
+               sh "mvn -f moodApp/pom.xml clean -DskipTests package"
+               sh 'mvn -f moodApp/pom.xml deploy -s moodApp/settings.xml'
+            }
+        }
+	stage('Build Docker Image moodapp'){
+	    steps{
+		    dir('moodApp'){
+		       sh 'docker build -t esp10-moodapp .'
+		       sh 'docker tag esp10-moodapp 192.168.160.99:5000/esp10-moodapp'
+		       sh 'docker push 192.168.160.99:5000/esp10-moodapp'
+		       //sh 'docker images'
+		    }
+	    }
+	}
+	stage('Deploy runtime moodapp'){
+	   steps{
+		 dir('moodApp'){
+	             sshagent(credentials:['esp10_ssh_runtimeVM']){
+			sh 'ssh -o StrictHostKeyChecking=no esp10@192.168.160.103 docker run --rm -it -d -p 10060:8080 --name esp10-moodapp 192.168.160.99:5000/esp10-moodapp'	 
 	             }
 		 }
 	   }

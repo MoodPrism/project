@@ -20,7 +20,7 @@ public class MoodprismController {
     @Autowired
     kafkaConsumer consumer;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://192.168.160.103:1070")
     @GetMapping("/")
     public @ResponseBody String index() throws ParseException
     {

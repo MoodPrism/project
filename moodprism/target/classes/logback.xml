@@ -8,7 +8,7 @@
         </layout>
     </appender>
 
-    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+   <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>172.17.0.1:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <keepAliveDuration>5 minutes</keepAliveDuration>
@@ -16,6 +16,24 @@
 
     <appender name="STASH2" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>127.0.0.1:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+    </appender>
+
+    <appender name="STASH3" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.160.99:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+    </appender>
+
+    <appender name="STASH4" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.160.103:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+    </appender>
+
+     <appender name="STASH4" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.160.103:9092</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <keepAliveDuration>5 minutes</keepAliveDuration>
     </appender>

@@ -30,11 +30,11 @@ public class MoodApp
 
     public static void main(String[] args) throws Exception
     {		
-		String kafkaAddress = "localhost:9092";
+		String kafkaAddress = "192.168.160.103:9092";
 		if(args.length == 1) {kafkaAddress = args[0];}
 
 		consumerProperties = new Properties();
-		consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.160.103:9092");
 		consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

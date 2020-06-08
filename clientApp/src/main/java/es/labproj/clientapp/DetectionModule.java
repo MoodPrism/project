@@ -28,7 +28,7 @@ public class DetectionModule implements NativeKeyListener, NativeMouseInputListe
 
     public static void main(String[] args) throws Exception
     {		
-		String kafkaAddress = "localhost:9092";
+		String kafkaAddress = "192.168.160.103:9092";
 		if(args.length == 2) {username = args[0]; kafkaAddress = args[1];}
 		else if(args.length == 1) {username = args[0];}
 		else if(args.length == 0) {username = "John";}
