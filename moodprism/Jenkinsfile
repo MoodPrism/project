@@ -15,7 +15,7 @@ pipeline {
         }
 	stage('Deploy') {
 	    steps {
-		sh 'mvn -f moodprism/pom.xml deploy -s moodprism/settings.xml'
+		sh 'mvn -f moodprism/pom.xml -DskipTests deploy -s moodprism/settings.xml'
 	    }
 	}
 	stage('Build Docker Image moodprism'){
