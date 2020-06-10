@@ -1,3 +1,3 @@
-moodprism/StepsDefinition.class
-moodprism/MoodprismTest.class
-moodprism/RunCucumberTest.class
+moodprism/testIntegration/StepDefs$KafkaMessageProducerService.class
+moodprism/testIntegration/StepDefs$KafkaProducerConfiguration.class
+moodprism/testIntegration/StepDefs.class

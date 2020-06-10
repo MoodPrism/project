@@ -1,3 +1,4 @@
-/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/MoodprismTest.java
-/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/RunCucumberTest.java
-/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/StepsDefinition.java
+/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/testIntegration/StepDefs.java
+/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/testIntegration/CucumberTest.java
+/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/testProduction/StepsDefinition.java
+/home/mariana/Documents/ES_VM/project/moodprism/src/test/java/moodprism/testProduction/RunCucumberTest.java
